@@ -18,10 +18,70 @@ function toggleDiv(divNumber) {
     // Highlight the clicked button
     var btn = document.getElementById('btn' + divNumber);
     btn.style.backgroundColor = 'orangered';
+    btn.style.transition = '0.2s';
 }
 
+function zoom(){
+    gsap.to(".zoom", {
+        scale: 300,
+        stagger: 0.25,
+        duration: 3,
+        opacity: 0,
+        scrollTrigger: {
+            trigger: ".page1",
+            pin: true,
+            start: "top top",
+            end: "bottom 10%",
+            scrub: 1,
+            // markers: true,
+            onEnterBack: function() {
+                gsap.set(".zoom", { display: "flex", pointerEvents: "none" }); // Reset display property and disable pointer events
+            },
+            onEnter: function() {
+                gsap.set(".zoom", { pointerEvents: "auto" }); // Enable pointer events when entering trigger area
+            }
+        }
+    });
+}
+zoom();
+
+function vdo(){
+    var tll = gsap.timeline({
+        scrollTrigger:{
+            trigger: ".page6",
+            pin: true,
+            scrub: 1,
+            start: "top top",
+            end: "bottom top",
+            // markers: true,
+        }
+    })
+    
+    tll.to(".page6 h1",{
+        top: "-20%",
+    })
+    
+    var tll1 = gsap.timeline({
+        scrollTrigger:{
+            trigger: ".page7",
+            pin: true,
+            scrub: 1,
+            start: "top top",
+            end: "bottom top",
+            // markers: true,
+        }
+    })
+    
+    tll1.to(".page7 h1",{
+        top: "-20%",
+    })
+    
+}
+vdo();
+
 //image change animation
-gsap.set(".animation-page1 img", { xPercent: -100 });
+function gsapla(){
+    gsap.set(".animation-page1 img", { xPercent: -100 });
 
     const images = document.querySelectorAll(".animation-page1 img");
     const tl = gsap.timeline({ defaults: { duration: 2, ease: "power2.inOut" } });
@@ -39,6 +99,168 @@ gsap.set(".animation-page1 img", { xPercent: -100 });
     document.addEventListener("DOMContentLoaded", () => {
         tl.play();
     });
+}
+gsapla();
+
+function scrollpage(){
+    gsap.to("#elems11",{
+        scrollTrigger:{
+            trigger: ".page8",
+            start: "top top",
+            end: "bottom bottom",
+            // pin: true,
+            // markers: true,
+            scrub: 1,
+        },
+        xPercent: -200,
+        ease: Power2,
+    })
+}
+scrollpage();
+
+function bodycolorchange(){
+    document.querySelectorAll("#section-lala")
+.forEach(function(e){
+    ScrollTrigger.create({
+        trigger: e,
+        start: "top 20%",
+        end: "bottom 20%",
+        scrub: 1,
+        ease: "power4.out", // Easing function
+        // markers: true,
+        onEnter: function(){
+            document.body.setAttribute("theme", e.dataset.color);
+        },
+        onEnterBack: function(){
+            document.body.setAttribute("theme", e.dataset.color);
+        }
+    })
+})
+}
+bodycolorchange();
+
+function teamphoto(){
+document.querySelectorAll(".mems-cont")
+.forEach(function(el){
+    el.addEventListener("mousemove", function(dets){
+        gsap.to(this.querySelector(".pics"),
+         {  opacity: 1,
+            x: gsap.utils.mapRange(0, window.innerWidth, -200, 200, dets.clientX),
+            ease: Power4,
+            duration: .4,
+            scale: 1,})
+    })
+
+    el.addEventListener("mouseleave", function(dets){
+        gsap.to(this.querySelector(".pics"), {opacity: 0})
+    })
+})
+
+document.querySelectorAll(".mems-cont1")
+.forEach(function(ele){
+    ele.addEventListener("mousemove", function(dets){
+        gsap.to(this.querySelector(".pics1"),
+         {  opacity: 1,
+            x: gsap.utils.mapRange(0, window.innerWidth, -200, 200, dets.clientX),
+            ease: Power4,
+            duration: .4,
+            scale: 1,})
+    })
+
+    ele.addEventListener("mouseleave", function(dets){
+        gsap.to(this.querySelector(".pics1"), {opacity: 0})
+    })
+})
+
+document.querySelectorAll(".mems-cont2")
+.forEach(function(ele){
+    ele.addEventListener("mousemove", function(dets){
+        gsap.to(this.querySelector(".pics2"),
+         {  opacity: 1,
+            x: gsap.utils.mapRange(0, window.innerWidth, -200, 200, dets.clientX),
+            ease: Power4,
+            duration: .4,
+            scale: 1,})
+    })
+
+    ele.addEventListener("mouseleave", function(dets){
+        gsap.to(this.querySelector(".pics2"), {opacity: 0})
+    })
+})
+}
+teamphoto();
+
+function photodis(){
+    gsap.to(".dance7 img", {
+        opacity: 0,
+        scrollTrigger:{
+            trigger: ".page9",
+            // markers: true,
+            start: "top 20%",
+            // end: "top 30%",
+            toggleActions: "play reverse play reverse"
+        }
+    })
+}
+photodis();
+
+function membership(){
+    gsap.to(".purchase h1",{
+        // opacity:1,
+        y: 10,
+        scale: 1,
+        scrollTrigger:{
+            trigger: ".page10",
+            start: "top 20%",
+            end: "top 40%",
+            scrub: true,
+            ease: Power4,
+            // markers: true,
+        }
+    })
+    
+    gsap.to(".purchase h1",{
+        duration: 1,
+        opacity: 100,
+        scrollTrigger:{
+            trigger: ".page10",
+            start: "top 70%",
+            end: "bottom bottom",
+            scrub: true,
+            ease: Power4,
+            // markers: true,
+        }
+    })
+    
+    gsap.to(".card-cont1",{
+        duration: 2,
+        scale: 1,
+        opacity: 100,
+        scrollTrigger:{
+            trigger: ".page10",
+            start: "top 20%",
+            end: "bottom bottom",
+            scrub: true,
+            // markers: true,
+            ease: Power2,
+        }
+    })
+    
+    gsap.to(".card-cont2",{
+        duration: 10,
+        scale: 1,
+        opacity: 100,
+        scrollTrigger:{
+            trigger: ".page10",
+            start: "top 20%",
+            end: "bottom bottom",
+            scrub: true,
+            // markers: true,
+            ease: Power2,
+        }
+    })
+}
+membership();
 
 //BMI Calculator
 
@@ -174,3 +396,7 @@ page1Content.addEventListener("mouseleave",function(){
         opacity:0
     })
 })
+
+(function() {
+        const locomotiveScroll = new LocomotiveScroll();
+})();
