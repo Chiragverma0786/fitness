@@ -21,6 +21,40 @@ function toggleDiv(divNumber) {
     btn.style.transition = '0.2s';
 }
 
+var menuImg = document.querySelector('.menu-img')
+var menu = document.querySelector('.showmenu')
+var close = document.querySelector('.closemenu')
+menuImg.addEventListener("click", function() {
+    menu.style.top = 0
+})
+close.addEventListener("click", function() {
+    menu.style.top = "-110%"
+})
+
+
+
+
+function piczoom(){
+    const images = document.querySelectorAll('#imgzoom');
+
+    // Function to scale the image when mouse enters
+    function scaleImage(event) {
+        gsap.to(event.target, { scale: 1.5 });
+    }
+
+    // Function to reset the image scale when mouse leaves
+    function resetImage(event) {
+        gsap.to(event.target, { scale: 1 });
+    }
+
+    // Event listeners to trigger scaling for all images
+    images.forEach(img => {
+        img.addEventListener('mouseenter', scaleImage);
+        img.addEventListener('mouseleave', resetImage);
+    });
+}
+piczoom();
+
 function zoom(){
     gsap.to(".zoom", {
         scale: 300,
@@ -38,7 +72,7 @@ function zoom(){
                 gsap.set(".zoom", { display: "flex", pointerEvents: "none" }); // Reset display property and disable pointer events
             },
             onEnter: function() {
-                gsap.set(".zoom", { pointerEvents: "auto" }); // Enable pointer events when entering trigger area
+                gsap.set(".zoom", { pointerEvents: "none" }); // Enable pointer events when entering trigger area
             }
         }
     });
